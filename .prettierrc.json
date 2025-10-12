@@ -17,6 +17,6 @@
     "",
     "^[./]"
   ],
-  "tailwindStylesheet": "./src/styles/main.css",
+  "tailwindStylesheet": "./app/ui/global.css",
   "tailwindFunctions": ["cva", "tv"]
 }
