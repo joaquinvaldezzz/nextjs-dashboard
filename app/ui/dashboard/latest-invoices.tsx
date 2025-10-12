@@ -1,8 +1,6 @@
-import Image from "next/image";
 import { LatestInvoice } from "@/app/lib/definitions";
 import { lusitana } from "@/app/ui/fonts";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
 
 export default async function LatestInvoices({
   latestInvoices,
