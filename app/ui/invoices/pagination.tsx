@@ -74,7 +74,7 @@ function PaginationNumber({
   return isActive || position === "middle" ? (
     <div className={className}>{page}</div>
   ) : (
-    <Link href={href} className={className}>
+    <Link className={className} href={href}>
       {page}
     </Link>
   );
