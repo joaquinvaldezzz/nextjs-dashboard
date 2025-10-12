@@ -6,7 +6,7 @@ import "./ui/global.css";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html className={inter.className} lang="en">
+    <html className={inter.variable} lang="en">
       <body className="antialiased">{children}</body>
     </html>
   );
