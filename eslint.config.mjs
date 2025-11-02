@@ -16,7 +16,6 @@ import prettierPlugin from "eslint-plugin-prettier";
 
 const gitignorePath = path.resolve(".", ".gitignore");
 
-/** @type {import("eslint").Linter.Config[]} */
 const jsConfig = [
   // ESLint Recommended Rules
   {
@@ -39,15 +38,6 @@ const jsConfig = [
   },
 ];
 
-/** @type {import("eslint").Linter.Config[]} */
-const nodeConfig = [
-  // Node Plugin
-  plugins.node,
-  // Airbnb Node Recommended Config
-  ...configs.node.recommended,
-];
-
-/** @type {import("eslint").Linter.Config[]} */
 const nextConfig = [
   // React Plugin
   plugins.react,
@@ -63,12 +53,12 @@ const nextConfig = [
   rules.react.strict,
   {
     rules: {
+      // Disable jsx-sort-props to avoid conflicts with `eslint-plugin-perfectionist`
       "react/jsx-sort-props": "off",
     },
   },
 ];
 
-/** @type {import("eslint").Linter.Config[]} */
 const typescriptConfig = [
   // TypeScript ESLint Plugin
   plugins.typescriptEslint,
@@ -76,6 +66,8 @@ const typescriptConfig = [
   ...configs.base.typescript,
   // Strict TypeScript Config
   rules.typescript.typescriptEslintStrict,
+  // Airbnb Next TypeScript Config
+  ...configs.next.typescript,
 ];
 
 /** @type {import("eslint").Linter.Config[]} */
@@ -139,7 +131,6 @@ const perfectionistConfig = [
   },
 ];
 
-/** @type {import("eslint").Linter.Config[]} */
 const prettierConfig = [
   // Prettier Plugin
   {
@@ -158,15 +149,12 @@ const prettierConfig = [
   },
 ];
 
-/** @type {import("eslint").Linter.Config[]} */
 export default [
   // Ignore .gitignore files/folder in eslint
   includeIgnoreFile(gitignorePath),
   // Javascript Config
   ...jsConfig,
-  // Node Config
-  ...nodeConfig,
-  // Next.js Config
+  // Next Config
   ...nextConfig,
   // TypeScript Config
   ...typescriptConfig,
