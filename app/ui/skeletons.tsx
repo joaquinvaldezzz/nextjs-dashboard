@@ -100,6 +100,7 @@ export default function DashboardSkeleton() {
 
 export function TableRowSkeleton() {
   return (
+    /* eslint-disable jsx-a11y/control-has-associated-label */
     <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
       {/* Customer Name and Image */}
       <td className="relative overflow-hidden py-3 pr-3 pl-6 whitespace-nowrap">
@@ -132,6 +133,7 @@ export function TableRowSkeleton() {
         </div>
       </td>
     </tr>
+    /* eslint-enable jsx-a11y/control-has-associated-label */
   );
 }
 

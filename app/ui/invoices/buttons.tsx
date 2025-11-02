@@ -12,19 +12,24 @@ export function CreateInvoice() {
   );
 }
 
-export function UpdateInvoice() {
+export function UpdateInvoice({ id }: { id: string }) {
   return (
-    <Link className="rounded-md border p-2 hover:bg-gray-100" href="/dashboard/invoices">
+    <Link
+      className="rounded-md border p-2 hover:bg-gray-100"
+      href={`/dashboard/invoices/${id}/edit`}
+    >
       <PencilIcon className="w-5" />
     </Link>
   );
 }
 
-export function DeleteInvoice() {
+export function DeleteInvoice({ id: _id }: { id: string }) {
   return (
-    <button className="rounded-md border p-2 hover:bg-gray-100" type="submit">
-      <span className="sr-only">Delete</span>
-      <TrashIcon className="w-5" />
-    </button>
+    <form>
+      <button className="rounded-md border p-2 hover:bg-gray-100" type="submit">
+        <span className="sr-only">Delete</span>
+        <TrashIcon className="w-5" />
+      </button>
+    </form>
   );
 }
