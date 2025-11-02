@@ -42,7 +42,7 @@ export default async function RevenueChart() {
                 style={{
                   height: `${(chartHeight / topLabel) * month.revenue}px`,
                 }}
-              ></div>
+              />
               <p className="-rotate-90 text-sm text-gray-400 sm:rotate-0">{month.month}</p>
             </div>
           ))}
