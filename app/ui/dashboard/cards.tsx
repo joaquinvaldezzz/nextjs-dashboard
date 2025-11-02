@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { BanknotesIcon, ClockIcon, InboxIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 
 import { fetchCardData } from "@/app/lib/data";
@@ -9,20 +10,6 @@ const iconMap = {
   pending: ClockIcon,
   invoices: InboxIcon,
 };
-
-export default async function CardWrapper() {
-  const { numberOfInvoices, numberOfCustomers, totalPaidInvoices, totalPendingInvoices } =
-    await fetchCardData();
-
-  return (
-    <>
-      <Card type="collected" value={totalPaidInvoices} title="Collected" />
-      <Card type="pending" value={totalPendingInvoices} title="Pending" />
-      <Card type="invoices" value={numberOfInvoices} title="Total Invoices" />
-      <Card type="customers" value={numberOfCustomers} title="Total Customers" />
-    </>
-  );
-}
 
 export function Card({
   title,
@@ -47,5 +34,19 @@ export function Card({
         {value}
       </p>
     </div>
+  );
+}
+
+export default async function CardWrapper() {
+  const { numberOfInvoices, numberOfCustomers, totalPaidInvoices, totalPendingInvoices } =
+    await fetchCardData();
+
+  return (
+    <Fragment>
+      <Card type="collected" value={totalPaidInvoices} title="Collected" />
+      <Card type="pending" value={totalPendingInvoices} title="Pending" />
+      <Card type="invoices" value={numberOfInvoices} title="Total Invoices" />
+      <Card type="customers" value={numberOfCustomers} title="Total Customers" />
+    </Fragment>
   );
 }

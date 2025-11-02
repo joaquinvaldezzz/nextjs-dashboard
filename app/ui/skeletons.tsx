@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 // Loading animation
 const shimmer =
   "before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-linear-to-r before:from-transparent before:via-white/60 before:to-transparent";
@@ -18,12 +20,12 @@ export function CardSkeleton() {
 
 export function CardsSkeleton() {
   return (
-    <>
+    <Fragment>
       <CardSkeleton />
       <CardSkeleton />
       <CardSkeleton />
       <CardSkeleton />
-    </>
+    </Fragment>
   );
 }
 
@@ -80,7 +82,7 @@ export function LatestInvoicesSkeleton() {
 
 export default function DashboardSkeleton() {
   return (
-    <>
+    <Fragment>
       <div className={`${shimmer} relative mb-4 h-8 w-36 overflow-hidden rounded-md bg-gray-100`} />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <CardSkeleton />
@@ -92,7 +94,7 @@ export default function DashboardSkeleton() {
         <RevenueChartSkeleton />
         <LatestInvoicesSkeleton />
       </div>
-    </>
+    </Fragment>
   );
 }
 
@@ -102,31 +104,31 @@ export function TableRowSkeleton() {
       {/* Customer Name and Image */}
       <td className="relative overflow-hidden py-3 pr-3 pl-6 whitespace-nowrap">
         <div className="flex items-center gap-3">
-          <div className="h-8 w-8 rounded-full bg-gray-100"></div>
-          <div className="h-6 w-24 rounded-sm bg-gray-100"></div>
+          <div className="h-8 w-8 rounded-full bg-gray-100" />
+          <div className="h-6 w-24 rounded-sm bg-gray-100" />
         </div>
       </td>
       {/* Email */}
       <td className="px-3 py-3 whitespace-nowrap">
-        <div className="h-6 w-32 rounded-sm bg-gray-100"></div>
+        <div className="h-6 w-32 rounded-sm bg-gray-100" />
       </td>
       {/* Amount */}
       <td className="px-3 py-3 whitespace-nowrap">
-        <div className="h-6 w-16 rounded-sm bg-gray-100"></div>
+        <div className="h-6 w-16 rounded-sm bg-gray-100" />
       </td>
       {/* Date */}
       <td className="px-3 py-3 whitespace-nowrap">
-        <div className="h-6 w-16 rounded-sm bg-gray-100"></div>
+        <div className="h-6 w-16 rounded-sm bg-gray-100" />
       </td>
       {/* Status */}
       <td className="px-3 py-3 whitespace-nowrap">
-        <div className="h-6 w-16 rounded-sm bg-gray-100"></div>
+        <div className="h-6 w-16 rounded-sm bg-gray-100" />
       </td>
       {/* Actions */}
       <td className="py-3 pr-3 pl-6 whitespace-nowrap">
         <div className="flex justify-end gap-3">
-          <div className="h-[38px] w-[38px] rounded-sm bg-gray-100"></div>
-          <div className="h-[38px] w-[38px] rounded-sm bg-gray-100"></div>
+          <div className="h-[38px] w-[38px] rounded-sm bg-gray-100" />
+          <div className="h-[38px] w-[38px] rounded-sm bg-gray-100" />
         </div>
       </td>
     </tr>
@@ -138,19 +140,19 @@ export function InvoicesMobileSkeleton() {
     <div className="mb-2 w-full rounded-md bg-white p-4">
       <div className="flex items-center justify-between border-b border-gray-100 pb-8">
         <div className="flex items-center">
-          <div className="mr-2 h-8 w-8 rounded-full bg-gray-100"></div>
-          <div className="h-6 w-16 rounded-sm bg-gray-100"></div>
+          <div className="mr-2 h-8 w-8 rounded-full bg-gray-100" />
+          <div className="h-6 w-16 rounded-sm bg-gray-100" />
         </div>
-        <div className="h-6 w-16 rounded-sm bg-gray-100"></div>
+        <div className="h-6 w-16 rounded-sm bg-gray-100" />
       </div>
       <div className="flex w-full items-center justify-between pt-4">
         <div>
-          <div className="h-6 w-16 rounded-sm bg-gray-100"></div>
-          <div className="mt-2 h-6 w-24 rounded-sm bg-gray-100"></div>
+          <div className="h-6 w-16 rounded-sm bg-gray-100" />
+          <div className="mt-2 h-6 w-24 rounded-sm bg-gray-100" />
         </div>
         <div className="flex justify-end gap-2">
-          <div className="h-10 w-10 rounded-sm bg-gray-100"></div>
-          <div className="h-10 w-10 rounded-sm bg-gray-100"></div>
+          <div className="h-10 w-10 rounded-sm bg-gray-100" />
+          <div className="h-10 w-10 rounded-sm bg-gray-100" />
         </div>
       </div>
     </div>

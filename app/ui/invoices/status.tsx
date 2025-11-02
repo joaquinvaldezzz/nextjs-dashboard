@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { CheckIcon, ClockIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 
@@ -10,16 +11,16 @@ export default function InvoiceStatus({ status }: { status: string }) {
       })}
     >
       {status === "pending" ? (
-        <>
+        <Fragment>
           Pending
           <ClockIcon className="ml-1 w-4 text-gray-500" />
-        </>
+        </Fragment>
       ) : null}
       {status === "paid" ? (
-        <>
+        <Fragment>
           Paid
           <CheckIcon className="ml-1 w-4 text-white" />
-        </>
+        </Fragment>
       ) : null}
     </span>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { DocumentDuplicateIcon, HomeIcon, UserGroupIcon } from "@heroicons/react/24/outline";
@@ -21,7 +22,7 @@ export default function NavLinks() {
   const pathname = usePathname();
 
   return (
-    <>
+    <Fragment>
       {links.map((link) => {
         const LinkIcon = link.icon;
         return (
@@ -40,6 +41,6 @@ export default function NavLinks() {
           </Link>
         );
       })}
-    </>
+    </Fragment>
   );
 }
