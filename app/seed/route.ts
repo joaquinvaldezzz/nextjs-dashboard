@@ -9,7 +9,7 @@ async function seedUsers() {
   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
   await sql`
     CREATE TABLE IF NOT EXISTS users (
-      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      id UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
       email TEXT NOT NULL UNIQUE,
       password TEXT NOT NULL
@@ -20,8 +20,15 @@ async function seedUsers() {
     users.map(async (user) => {
       const hashedPassword = await bcrypt.hash(user.password, 10);
       return sql`
-        INSERT INTO users (id, name, email, password)
-        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
+        INSERT INTO
+          users (id, name, email, password)
+        VALUES
+          (
+            ${user.id},
+            ${user.name},
+            ${user.email},
+            ${hashedPassword}
+          )
         ON CONFLICT (id) DO NOTHING;
       `;
     }),
@@ -35,7 +42,7 @@ async function seedInvoices() {
 
   await sql`
     CREATE TABLE IF NOT EXISTS invoices (
-      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      id UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
       customer_id UUID NOT NULL,
       amount INT NOT NULL,
       status VARCHAR(255) NOT NULL,
@@ -46,8 +53,15 @@ async function seedInvoices() {
   const insertedInvoices = await Promise.all(
     invoices.map(
       async (invoice) => sql`
-        INSERT INTO invoices (customer_id, amount, status, date)
-        VALUES (${invoice.customer_id}, ${invoice.amount}, ${invoice.status}, ${invoice.date})
+        INSERT INTO
+          invoices (customer_id, amount, status, date)
+        VALUES
+          (
+            ${invoice.customer_id},
+            ${invoice.amount},
+            ${invoice.status},
+            ${invoice.date}
+          )
         ON CONFLICT (id) DO NOTHING;
       `,
     ),
@@ -61,7 +75,7 @@ async function seedCustomers() {
 
   await sql`
     CREATE TABLE IF NOT EXISTS customers (
-      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      id UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
       email VARCHAR(255) NOT NULL,
       image_url VARCHAR(255) NOT NULL
@@ -71,8 +85,15 @@ async function seedCustomers() {
   const insertedCustomers = await Promise.all(
     customers.map(
       async (customer) => sql`
-        INSERT INTO customers (id, name, email, image_url)
-        VALUES (${customer.id}, ${customer.name}, ${customer.email}, ${customer.image_url})
+        INSERT INTO
+          customers (id, name, email, image_url)
+        VALUES
+          (
+            ${customer.id},
+            ${customer.name},
+            ${customer.email},
+            ${customer.image_url}
+          )
         ON CONFLICT (id) DO NOTHING;
       `,
     ),
@@ -92,8 +113,13 @@ async function seedRevenue() {
   const insertedRevenue = await Promise.all(
     revenue.map(
       async (rev) => sql`
-        INSERT INTO revenue (month, revenue)
-        VALUES (${rev.month}, ${rev.revenue})
+        INSERT INTO
+          revenue (month, revenue)
+        VALUES
+          (
+            ${rev.month},
+            ${rev.revenue}
+          )
         ON CONFLICT (month) DO NOTHING;
       `,
     ),
