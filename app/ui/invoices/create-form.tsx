@@ -1,3 +1,6 @@
+"use client";
+
+import { useActionState } from "react";
 import Link from "next/link";
 import {
   CheckIcon,
@@ -9,15 +12,15 @@ import {
 import { createInvoice } from "@/app/lib/actions";
 import { Button } from "@/app/ui/button";
 
+import type { State } from "@/app/lib/actions";
 import type { CustomerField } from "@/app/lib/definitions";
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
+  const initialState: State = { message: null, errors: {} };
+  const [state, formAction] = useActionState(createInvoice, initialState);
+
   return (
-    <form
-      action={async (formData) => {
-        await createInvoice(formData);
-      }}
-    >
+    <form action={formAction}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -28,6 +31,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                 className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                 id="customer"
                 name="customerId"
+                aria-describedby="customer-error"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -42,6 +46,14 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
               <UserCircleIcon className="pointer-events-none absolute top-1/2 left-3 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
             </div>
           </label>
+
+          <div id="customer-error" aria-atomic="true" aria-live="polite">
+            {state.errors?.customerId?.map((error: string) => (
+              <p className="mt-2 text-sm text-red-500" key={error}>
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         {/* Invoice Amount */}
@@ -56,12 +68,21 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                   name="amount"
                   type="number"
                   placeholder="Enter USD amount"
+                  aria-describedby="amount-error"
                   step="0.01"
                 />
                 <CurrencyDollarIcon className="pointer-events-none absolute top-1/2 left-3 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
               </div>
             </div>
           </label>
+
+          <div id="amount-error" aria-atomic="true" aria-live="polite">
+            {state.errors?.amount?.map((error: string) => (
+              <p className="mt-2 text-sm text-red-500" key={error}>
+                {error}
+              </p>
+            ))}
+          </div>
         </div>
 
         {/* Invoice Status */}
@@ -80,6 +101,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                     name="status"
                     type="radio"
                     value="pending"
+                    aria-describedby="status-error"
                   />
                   Pending <ClockIcon className="size-4" />
                 </label>
@@ -95,6 +117,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                     name="status"
                     type="radio"
                     value="paid"
+                    aria-describedby="status-error"
                   />
                   Paid <CheckIcon className="size-4" />
                 </label>
@@ -102,6 +125,14 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
             </div>
           </div>
         </fieldset>
+
+        <div id="status-error" aria-atomic="true" aria-live="polite">
+          {state.errors?.status?.map((error: string) => (
+            <p className="mt-2 text-sm text-red-500" key={error}>
+              {error}
+            </p>
+          ))}
+        </div>
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link
