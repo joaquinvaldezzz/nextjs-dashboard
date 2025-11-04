@@ -2,7 +2,9 @@
   "printWidth": 100,
   "plugins": [
     "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-embed",
     "prettier-plugin-jsdoc",
+    "prettier-plugin-sql",
     "prettier-plugin-tailwindcss"
   ],
   "importOrder": [
@@ -27,6 +29,7 @@
     "",
     "^\\."
   ],
+  "language": "postgresql",
   "tailwindStylesheet": "./app/ui/global.css",
   "tailwindFunctions": ["cva", "tv"]
 }
